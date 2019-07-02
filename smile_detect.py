@@ -13,12 +13,12 @@ for (x,y,w,h) in faces:
     img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
     roi_gray = gray[y:y+h, x:x+w]
     roi_color = img[y:y+h, x:x+w]
-    eyes = eye_cascade.detectMultiScale(roi_gray)
+    eyes = eye_cascade.detectMultiScale(roi_gray,1.3,22)
     for (ex,ey,ew,eh) in eyes:
         cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-    smile = smile_cascade.detectMultiScale(roi_gray)
-    for (ex,ey,ew,eh) in smile:
-        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,0,255),2)
+    smile = smile_cascade.detectMultiScale(roi_gray,1.7,22)
+    for (sx,sy,sw,sh) in smile:
+        cv2.rectangle(roi_color,(sx,sy),(sx+sw,sy+sh),(0,0,255),2)
 
 cv2.imshow('img',img)
 cv2.waitKey(0)
